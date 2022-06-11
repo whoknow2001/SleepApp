@@ -83,13 +83,11 @@ class UserApi(APIView):
         return JsonResponse("Deleted Successfully", safe=False)
 
 class AccountApi(APIView):
-    def get(self, request, format=None):
-        Username = request.data['Username']
-        Password = request.data['Password']
-        if Username != None and Password != None:
+    def get(self, request, format=None,username=None,password=None):
+        if username != None and password != None:
             accounts = Account.objects.values()
             for account in accounts:
-                if (account['Username'] == Username and account['Password'] == Password):
+                if (account['Username'] == username and account['Password'] == password):
                     return JsonResponse(account['Role'],safe=False)
         return JsonResponse("Error",safe=False)
     def post(self, request, format=None):
