@@ -7,7 +7,7 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.decorators import parser_classes
 
 # Create your views here.
-@parser_classes((MultiPartParser))
+@parser_classes((MultiPartParser, ))
 class UserApi(APIView):
     def get(self, request, format=None, Id = None):
         if Id == None or Id == '':
