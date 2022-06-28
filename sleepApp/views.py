@@ -7,7 +7,7 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.decorators import parser_classes
 
 # Create your views here.
-@parser_classes((MultiPartParser, ))
+@parser_classes((MultiPartParser))
 class UserApi(APIView):
     def get(self, request, format=None, Id = None):
         if Id == None or Id == '':
@@ -66,7 +66,7 @@ class UserApi(APIView):
 
             try:
                 for i in user['Notification']:
-                    tmp = {"Time" : datetime.now(),"Text": i['Text']}
+                    tmp = {"Time" : datetime.utcnow(),"Text": i['Text']}
                     user_change.Notification.insert(0,tmp)
             except:
                 pass
